@@ -63,6 +63,7 @@
     "@adonisjs/lucid": "^21.6.0",
     "@vinejs/vine": "^3.0.0",
     "axios": "^1.7.2",
+    "got": "^14.4.7",
     "luxon": "^3.5.0",
     "pg": "^8.13.3",
     "reflect-metadata": "^0.2.2",

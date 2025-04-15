@@ -16,5 +16,6 @@ router
     router
       .get('followers', [FollowsController, 'getFollowers'])
       .use(middleware.auth({ guards: ['api'] }))
+    router.get('bible', [FollowsController, 'getBible'])
   })
   .prefix('/api/user')

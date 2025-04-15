@@ -1,8 +1,13 @@
 import User from '#models/user'
+import BibleService from '#services/bible_service'
 import { sendError, sendSuccess } from '#utils/utils'
+import { inject } from '@adonisjs/core'
 import { HttpContext } from '@adonisjs/core/http'
 
+@inject()
 export default class FollowsController {
+  constructor(protected bibleService: BibleService) {}
+
   async followUser({ request, auth, response }: HttpContext) {
     try {
       const user = auth.use('api').user
@@ -131,6 +136,15 @@ export default class FollowsController {
         .paginate(page, perPage)
 
       return sendSuccess(response, { message: 'Following retrieved successfully', data: following })
+    } catch (error) {
+      return sendError(response, { error })
+    }
+  }
+
+  async getBible({ response }: HttpContext) {
+    try {
+      const bibleResponse = await this.bibleService.getBibleList()
+      sendSuccess(response, { message: 'Success', data: bibleResponse })
     } catch (error) {
       return sendError(response, { error })
     }
